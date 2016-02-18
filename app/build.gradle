@@ -25,4 +25,6 @@ dependencies {
     // Added for AdMob
     //compile 'com.google.android.gms:play-services:8.4.0'      // it did not compile
     compile 'com.google.android.gms:play-services-ads:8.4.0'    // this compiles
+    compile project(":jokejavalib")
+    testCompile 'junit:junit:4.8.2'
 }
