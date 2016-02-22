@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JokeAndroidLib</string>
+    android:text="@string/button_text"
+    <string name="missing_joke">Please provide a joke for me to tell!</string>
 </resources>
