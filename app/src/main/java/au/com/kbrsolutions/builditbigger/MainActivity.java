@@ -1,9 +1,11 @@
 package au.com.kbrsolutions.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,7 +52,10 @@ public class MainActivity extends ActionBarActivity {
 //        Toast.makeText(this, jokesJavaLibWizard.tellJavaLibAWizardJoke(), Toast.LENGTH_SHORT).show();
 //    }
 
-    public void launchJokeActivity(View view){
+    public void launchJokeActivity(View view) {
+
+        testGce();
+
         Intent intent = new Intent(this, JokeViewActivity.class);
         JokesJavaLibWizard jokeSource = new JokesJavaLibWizard();
         String joke = jokeSource.tellJavaLibAWizardJoke();
@@ -58,6 +63,14 @@ public class MainActivity extends ActionBarActivity {
         intent.putExtra(JokeViewActivity.JOKE_KEY, joke);
         startActivity(intent);
         Log.v(LOG_TAG, "launchJokeActivity - after startActivity");
+    }
+
+    /**
+     * Use to test code supplied in the documentation of GCE Template:
+     *  https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
+     */
+    private void testGce() {
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
     }
 
     /*
