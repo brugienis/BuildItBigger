@@ -11,9 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
-import au.com.kbrsolutions.jokes.JokesJavaLibWizard;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements JokesEndpointsAsyncTaskTask.JokesEndpointsCallbacks {
 
     private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -54,15 +53,29 @@ public class MainActivity extends ActionBarActivity {
 
     public void launchJokeActivity(View view) {
 
-        testGce();
+//        testGce();
+        getJokeFromGce();
 
+//        Intent intent = new Intent(this, JokeViewActivity.class);
+//        JokesJavaLibWizard jokeSource = new JokesJavaLibWizard();
+//        String joke = jokeSource.tellJavaLibAWizardJoke();
+//        Log.v(LOG_TAG, "launchJokeActivity - joke: " + joke);
+//        intent.putExtra(JokeViewActivity.JOKE_KEY, joke);
+//        startActivity(intent);
+//        Log.v(LOG_TAG, "launchJokeActivity - after startActivity");
+    }
+
+    private String getJokeFromGce() {
+        new JokesEndpointsAsyncTaskTask().execute(this);
+        return null;
+    }
+
+    @Override
+    public void processResponseFromGce(String reponse) {
+        Log.v(LOG_TAG, "processResponseFromGce - reponse: " + reponse);
         Intent intent = new Intent(this, JokeViewActivity.class);
-        JokesJavaLibWizard jokeSource = new JokesJavaLibWizard();
-        String joke = jokeSource.tellJavaLibAWizardJoke();
-        Log.v(LOG_TAG, "launchJokeActivity - joke: " + joke);
-        intent.putExtra(JokeViewActivity.JOKE_KEY, joke);
+        intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
         startActivity(intent);
-        Log.v(LOG_TAG, "launchJokeActivity - after startActivity");
     }
 
     /**

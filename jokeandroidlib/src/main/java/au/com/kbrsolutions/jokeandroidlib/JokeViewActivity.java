@@ -21,7 +21,7 @@ public class JokeViewActivity extends ActionBarActivity {
         TextView jokeTextView = (TextView) findViewById(R.id.joke_textview);
         if (joke != null && joke.length() != 0) {
             Log.v(LOG_TAG, "onCreate - joke: " + joke);
-            jokeTextView.setText(joke + " - we are now in the JokeViewActivity (JokeAndroid Lib)");
+            jokeTextView.setText("From JokeViewActivity (JokeAndroid Lib): " + joke);
         }
     }
 }
