@@ -18,6 +18,7 @@ import au.com.kbrsolutions.backend.myApi.MyApi;
 /**
  * Created by business on 24/02/2016.
  */
+// FIXME: 25/02/2016  - remove before sending for review
 public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
 
     private static MyApi myApiService = null;

@@ -26,6 +26,7 @@ import au.com.kbrsolutions.jokes.JokesJavaLibWizard;
 )
 public class MyEndpoint {
 
+    // FIXME: 25/02/2016 - remove the mehod below before sending for review
     /** A simple endpoint method that takes a name and says Hi back */
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(@Named("name") String name) {
@@ -41,7 +42,6 @@ public class MyEndpoint {
         String joke = jokeSource.tellJavaLibAWizardJoke();
         MyBean response = new MyBean();
         response.setData(joke);
-
         return response;
     }
 

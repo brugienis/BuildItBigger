@@ -16,6 +16,7 @@ import au.com.kbrsolutions.backend.myApi.MyApi;
 /**
  * Created by business on 24/02/2016.
  */
+// FIXME: 25/02/2016 - add Android Unit Test
 public class JokesEndpointsAsyncTaskTask extends AsyncTask<Activity, Void, String> {
 
     /**
@@ -41,9 +42,8 @@ public class JokesEndpointsAsyncTaskTask extends AsyncTask<Activity, Void, Strin
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
-                    // - 10.0.2.2 is localhost's IP address in Android emulator
                     // - turn off compression when running against local devappserver
-//                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")  // for Adroid emulator
+//                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")  // flocalhost's IP address in Android emulator
                     .setRootUrl("http://10.0.3.2:8080/_ah/api/")    // for Genymotion
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
@@ -56,8 +56,6 @@ public class JokesEndpointsAsyncTaskTask extends AsyncTask<Activity, Void, Strin
             myApiService = builder.build();
         }
 
-//        context = params[0].first;
-//        String name = params[0].second;
         Activity activity = params[0];
         try {
             mCallbacks = (JokesEndpointsCallbacks) activity;
@@ -78,7 +76,6 @@ public class JokesEndpointsAsyncTaskTask extends AsyncTask<Activity, Void, Strin
     @Override
     protected void onPostExecute(String result) {
         Log.v(LOG_TAG, "onPostExecute - result: " + result);
-//        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         mCallbacks.processResponseFromGce("From GCE: " + result);
     }
 }
