@@ -5,6 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         applicationId "au.com.kbrsolutions.builditbigger"
         minSdkVersion 10
         targetSdkVersion 23
@@ -24,6 +25,8 @@ dependencies {
     compile project(":jokejavalib")
     compile project(":jokeandroidlib")
     testCompile 'junit:junit:4.12'
+//    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     // Added for AdMob
     //compile 'com.google.android.gms:play-services:8.4.0'      // it did not compile
