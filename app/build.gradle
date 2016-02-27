@@ -25,7 +25,6 @@ dependencies {
     compile project(":jokejavalib")
     compile project(":jokeandroidlib")
     testCompile 'junit:junit:4.12'
-//    androidTestCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     // Added for AdMob

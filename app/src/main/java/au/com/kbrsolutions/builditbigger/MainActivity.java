@@ -10,7 +10,9 @@ import android.view.View;
 
 import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
 
-public class MainActivity extends ActionBarActivity implements JokesEndpointsAsyncTaskTask.JokesEndpointsCallbacks {
+public class MainActivity
+        extends ActionBarActivity
+        implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
 
     private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -50,7 +52,7 @@ public class MainActivity extends ActionBarActivity implements JokesEndpointsAsy
     }
 
     private String sendJokeAsyncRequestToGce() {
-        new JokesEndpointsAsyncTaskTask().execute(this);
+        new JokesEndpointsAsyncTask(this).execute(this);
         return null;
     }
 
