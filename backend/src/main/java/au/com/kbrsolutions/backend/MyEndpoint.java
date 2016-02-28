@@ -12,7 +12,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 
 import javax.inject.Named;
 
-import au.com.kbrsolutions.jokes.JokesJavaLibWizard;
+import au.com.kbrsolutions.jokes.JokesJavaLib;
 
 /** An endpoint class we are exposing */
 @Api(
@@ -38,7 +38,7 @@ public class MyEndpoint {
 
     @ApiMethod(name = "getJokeFromJavaLibrary")
     public MyBean getJokeFromJavaLibrary() {
-        JokesJavaLibWizard jokeSource = new JokesJavaLibWizard();
+        JokesJavaLib jokeSource = new JokesJavaLib();
         String joke = jokeSource.tellJavaLibAWizardJoke();
         MyBean response = new MyBean();
         response.setData(joke);

@@ -2,7 +2,6 @@ package au.com.kbrsolutions.builditbigger;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -28,13 +27,9 @@ public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
 
     private JokesEndpointsCallbacks mCallbacks;
     private static MyApi myApiService = null;
-//    private Activity mActivity;
-//    private JokesEndpointsCallbacks mjokesEndpointsCallbacks;
-//    CountDownLatch mCountDownLatch;
 
     private final static String LOG_TAG = JokesEndpointsAsyncTask.class.getSimpleName();
 
-//    JokesEndpointsAsyncTask(final CountDownLatch countDownLatch) {
     JokesEndpointsAsyncTask(JokesEndpointsCallbacks callbacks) {
         mCallbacks = callbacks;
     }
@@ -59,17 +54,7 @@ public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
             myApiService = builder.build();
         }
 
-//        Activity activity = params[0];
-//        try {
-//            mCallbacks = (JokesEndpointsCallbacks) activity;
-//        } catch (Exception e) {
-//            throw new RuntimeException(
-//                    mActivity.getResources()
-//                            .getString(R.string.callbacks_not_implemented, mActivity.toString()));
-//        }
-
         try {
-            Log.v(LOG_TAG, "doInBackground - myApiService: " + myApiService);
             return myApiService.getJokeFromJavaLibrary().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
@@ -78,13 +63,6 @@ public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Log.v(LOG_TAG, "onPostExecute - result: " + result);
-//        if (mCountDownLatch != null) {
-//            Log.v(LOG_TAG, "onPostExecute - before countDown()");
-//            mCountDownLatch.countDown();
-//        } else {
-            Log.v(LOG_TAG, "onPostExecute - before processResponseFromGce()");
-            mCallbacks.processResponseFromGce("From GCE: " + result);
-//        }
+        mCallbacks.processResponseFromGce("From GCE: " + result);
     }
 }

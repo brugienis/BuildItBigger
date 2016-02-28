@@ -1,7 +1,7 @@
 package au.com.kbrsolutions.jokes;
 
-public class JokesJavaLibWizard {
+public class JokesJavaLib {
     public String tellJavaLibAWizardJoke() {
-        return "From JokesJavaLibWizard: Ha Ha Ha";
+        return "From JokesJavaLib: Ha Ha Ha";
     }
 }

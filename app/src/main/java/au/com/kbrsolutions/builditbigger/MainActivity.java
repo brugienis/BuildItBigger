@@ -3,7 +3,6 @@ package au.com.kbrsolutions.builditbigger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,8 +45,6 @@ public class MainActivity
     }
 
     public void launchJokeActivity(View view) {
-
-//        testGce();
         sendJokeAsyncRequestToGce();
     }
 
@@ -58,30 +55,9 @@ public class MainActivity
 
     @Override
     public void processResponseFromGce(String reponse) {
-        Log.v(LOG_TAG, "processResponseFromGce - reponse: " + reponse);
         Intent intent = new Intent(this, JokeViewActivity.class);
         intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
         startActivity(intent);
     }
-
-    /**
-     * Use to test code supplied in the documentation of GCE Template:
-     *  https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
-     */
-//    private void testGce() {
-//        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
-//    }
-
-    /*
-
-    There we go! Now we can launch the activity from our library, and it's
-    easy to reuse that activity between different apps!
-
-     */
-
-//    public void launchLibraryActivity(View view){
-//        Intent myIntent = new Intent(this, JokeViewActivity.class);
-//        startActivity(myIntent);
-//    }
 
 }
