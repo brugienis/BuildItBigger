@@ -1,17 +1,13 @@
 package au.com.kbrsolutions.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
 
 public class MainActivity
-        extends ActionBarActivity
-        implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
+        extends ActionBarActivity {
+//        implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
 
     private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -44,20 +40,20 @@ public class MainActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void launchJokeActivity(View view) {
-        sendJokeAsyncRequestToGce();
-    }
+//    public void launchJokeActivity(View view) {
+//        sendJokeAsyncRequestToGce();
+//    }
+//
+//    private String sendJokeAsyncRequestToGce() {
+//        new JokesEndpointsAsyncTask(this).execute(this);
+//        return null;
+//    }
 
-    private String sendJokeAsyncRequestToGce() {
-        new JokesEndpointsAsyncTask(this).execute(this);
-        return null;
-    }
-
-    @Override
-    public void processResponseFromGce(String reponse) {
-        Intent intent = new Intent(this, JokeViewActivity.class);
-        intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
-        startActivity(intent);
-    }
+//    @Override
+//    public void processResponseFromGce(String reponse) {
+//        Intent intent = new Intent(this, JokeViewActivity.class);
+//        intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
+//        startActivity(intent);
+//    }
 
 }

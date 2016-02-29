@@ -3,6 +3,7 @@ package au.com.kbrsolutions.builditbigger;
 /**
  * Created by business on 8/12/2015.
  */
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +13,13 @@ import android.view.ViewGroup;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
+
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment
+        implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
 
     public MainActivityFragment() {
     }
@@ -36,4 +40,19 @@ public class MainActivityFragment extends Fragment {
         return root;
     }
 
+    public void launchJokeActivity(View view) {
+        sendJokeAsyncRequestToGce();
+    }
+
+    private String sendJokeAsyncRequestToGce() {
+        new JokesEndpointsAsyncTask(this).execute(this);
+        return null;
+    }
+
+    @Override
+    public void processResponseFromGce(String reponse) {
+        Intent intent = new Intent(getContext(), JokeViewActivity.class);
+        intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
+        startActivity(intent);
+    }
 }
