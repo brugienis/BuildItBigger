@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 public class MainActivity
         extends ActionBarActivity {
-//        implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
 
     private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -39,21 +38,5 @@ public class MainActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public void launchJokeActivity(View view) {
-//        sendJokeAsyncRequestToGce();
-//    }
-//
-//    private String sendJokeAsyncRequestToGce() {
-//        new JokesEndpointsAsyncTask(this).execute(this);
-//        return null;
-//    }
-
-//    @Override
-//    public void processResponseFromGce(String reponse) {
-//        Intent intent = new Intent(this, JokeViewActivity.class);
-//        intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
-//        startActivity(intent);
-//    }
 
 }
