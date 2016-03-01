@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import au.com.kbrsolutions.builditbigger.utils.ProgressBarHandler;
 import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
 
 /**
@@ -19,6 +20,8 @@ import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
  */
 public class MainActivityFragment extends Fragment
         implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
+
+    private ProgressBarHandler mProgressBarHandler;
 
     public MainActivityFragment() {
     }
@@ -36,6 +39,8 @@ public class MainActivityFragment extends Fragment
             }
         });
 
+        mProgressBarHandler = new ProgressBarHandler(getContext());
+
         return root;
     }
 
@@ -44,6 +49,7 @@ public class MainActivityFragment extends Fragment
 //    }
 
     private String sendJokeAsyncRequestToGce() {
+        mProgressBarHandler.show();
         new JokesEndpointsAsyncTask(this).execute();
         return null;
     }
@@ -53,6 +59,7 @@ public class MainActivityFragment extends Fragment
         Intent intent = new Intent(getContext(), JokeViewActivity.class);
         intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
         startActivity(intent);
+        mProgressBarHandler.hide();
     }
 
 }

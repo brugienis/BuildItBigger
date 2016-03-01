@@ -17,6 +17,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
+import au.com.kbrsolutions.builditbigger.utils.ProgressBarHandler;
 import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
 
 /**
@@ -25,7 +26,8 @@ import au.com.kbrsolutions.jokeandroidlib.JokeViewActivity;
 public class MainActivityFragment extends Fragment
         implements JokesEndpointsAsyncTask.JokesEndpointsCallbacks {
 
-    InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd;
+    private ProgressBarHandler mProgressBarHandler;
 
     public MainActivityFragment() {
     }
@@ -43,8 +45,8 @@ public class MainActivityFragment extends Fragment
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
-                requestNewInterstitial();
                 sendJokeAsyncRequestToGce();
+                requestNewInterstitial();
             }
         });
 
@@ -69,6 +71,9 @@ public class MainActivityFragment extends Fragment
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
+        mProgressBarHandler = new ProgressBarHandler(getContext());
+
         return root;
     }
 
@@ -81,6 +86,7 @@ public class MainActivityFragment extends Fragment
     }
 
     private String sendJokeAsyncRequestToGce() {
+        mProgressBarHandler.show();
         new JokesEndpointsAsyncTask(this).execute();
         return null;
     }
@@ -90,5 +96,6 @@ public class MainActivityFragment extends Fragment
         Intent intent = new Intent(getContext(), JokeViewActivity.class);
         intent.putExtra(JokeViewActivity.JOKE_KEY, "From MainActivity: " + reponse);
         startActivity(intent);
+        mProgressBarHandler.hide();
     }
 }
