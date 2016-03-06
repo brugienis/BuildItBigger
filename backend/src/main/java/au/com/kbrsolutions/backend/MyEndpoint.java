@@ -10,8 +10,6 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
-import javax.inject.Named;
-
 import au.com.kbrsolutions.jokes.JokesJavaLib;
 
 /** An endpoint class we are exposing */
@@ -26,16 +24,9 @@ import au.com.kbrsolutions.jokes.JokesJavaLib;
 )
 public class MyEndpoint {
 
-    // FIXME: 25/02/2016 - remove the mehod below before sending for review
-    /** A simple endpoint method that takes a name and says Hi back */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
-        MyBean response = new MyBean();
-        response.setData("Hi, " + name);
-
-        return response;
-    }
-
+    /**
+     * Returns a joke retrieved from the Java Library.
+     */
     @ApiMethod(name = "getJokeFromJavaLibrary")
     public MyBean getJokeFromJavaLibrary() {
         JokesJavaLib jokeSource = new JokesJavaLib();
