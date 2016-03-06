@@ -21,3 +21,23 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//tasks.getByPath(':app:connectedAndroidTest').mustRunAfter(':backend:appengineRun')
+//tasks.getByPath(':backend:appengineStop').mustRunAfter(':app:connectedAndroidTest')
+
+task startGceServerRunTestsStopServer (dependsOn: [":backend:appengineRun", ":app:connectedAndroidTest", ":backend:appengineStop"]) {
+
+    evaluationDependsOn ":backend"
+
+    project(":backend") {
+        appengine {
+            daemon = true
+        }
+    }
+    doFirst {
+        println "Task start"
+    }
+    doLast {
+        println "Task end"
+    }
+}
