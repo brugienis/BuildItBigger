@@ -44,10 +44,6 @@ public class MainActivityFragment extends Fragment
         return root;
     }
 
-//    public void launchJokeActivity(View view) {
-//        sendJokeAsyncRequestToGce();
-//    }
-
     private String sendJokeAsyncRequestToGce() {
         mProgressBarHandler.show();
         new JokesEndpointsAsyncTask(this).execute();
