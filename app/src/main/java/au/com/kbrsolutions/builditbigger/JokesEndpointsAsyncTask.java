@@ -15,7 +15,6 @@ import au.com.kbrsolutions.backend.myApi.MyApi;
 /**
  * Created by business on 24/02/2016.
  */
-// FIXME: 25/02/2016 - add Android Unit Test
 public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
 
     /**
@@ -41,7 +40,7 @@ public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
                     // - turn off compression when running against local devappserver
-//                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")  // flocalhost's IP address in Android emulator
+                    //.setRootUrl("http://10.0.2.2:8080/_ah/api/")  // flocalhost's IP address in Android emulator
                     .setRootUrl("http://10.0.3.2:8080/_ah/api/")    // for Genymotion
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
@@ -49,7 +48,7 @@ public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });
-            // end options for devappserver
+                    // end options for devappserver
 
             myApiService = builder.build();
         }
@@ -57,7 +56,8 @@ public class JokesEndpointsAsyncTask extends AsyncTask<Activity, Void, String> {
         try {
             return myApiService.getJokeFromJavaLibrary().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            String errMsg = e.getMessage();
+            return errMsg;
         }
     }
 
